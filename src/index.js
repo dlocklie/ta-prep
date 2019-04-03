@@ -10,7 +10,7 @@ class App extends React.Component {
 
     this.state = {
       todos: ['stuff', 'grocery-shopping'],
-      newTodo: null
+      newTodo: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,14 +28,23 @@ class App extends React.Component {
 
   handleChange(event) {
     this.setState({
-      newTodo: {title: event.target.value, completed: false}
-    })
+      newTodo: event.target.value
+    });
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+    let modifiedTodos = this.state.todos;
+    let newObj = {
+      completed: false,
+      id: 1,
+      title: this.state.newTodo,
+      userId: 1
+    }
+    modifiedTodos.push(newObj);
     this.setState({
-      todos: [...this.state.todos, event.target.value]
-    })
+      todos: modifiedTodos
+    });
   }
 
   render() {
