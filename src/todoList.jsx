@@ -10,7 +10,9 @@ function ToDoList (props) {
   }
 
   const listItems = notCompleted.map((todos) =>
-  <li>{todos.title}</li>
+  <li key={todos.title} onClick={props.handleClick}>
+  {todos.title}
+  </li>
   )
 
   return (
